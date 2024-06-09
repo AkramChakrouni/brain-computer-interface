@@ -1,0 +1,6 @@
+record-[2024.05.29-15.29.49]_FILTERED.edf
+record-[2024.05.29-15.06.48]_FILTERED.edf
+record-[2024.05.29-15.34.11]_FILTERED.edf
+record-[2024.05.29-15.18.33]_FILTERED.edf
+record-[2024.05.29-15.11.42]_FILTERED.edf
+record-[2024.05.29-15.34.11]_FILTERED - kopie.edf

@@ -121,16 +121,17 @@ def get_epochs_and_labels_external(fif_file):
 
 def file_to_tensor(input_folder, output_folder_filtered_files, output_folder_tensor_dataset):
     """
-    Load the EEG data from a list of FIF files, apply z-score normalization and wavelet transform to each epoch.
-    
+    Load the EEG data from a list of FIF files, apply z-score normalization and wavelet transform to each epoch,
+    and return the transformed epochs and their labels as a combined TensorDataset.
+
     Arguments:
-        - Input_folder (str): Path to the folder containing the FIF files.
-        - Output_folder_filtered_files (str): Path to the folder where the filtered files will be saved.
-        - Output_folder_tensor_dataset (str): Path to the folder where the combined dataset will be saved.
+        - input_folder (str): Path to the input folder containing the FIF files.
+        - output_folder_filtered_files (str): Path to the output folder for filtered files.
+        - output_folder_tensor_dataset (str): Path to the output folder for the combined TensorDataset.
+
+    Returns:
+        - Saves filtered files to the output folder filtered, and the combined TensorDataset to the output folder tensor.
     """
-    # Set logger level to CRITICAL to suppress logs
-    logger.setLevel(logging.CRITICAL)
-    
     # Create a list to hold the transformed epochs for all files
     all_transformed_epochs = []
     
@@ -164,18 +165,22 @@ def file_to_tensor(input_folder, output_folder_filtered_files, output_folder_ten
     # Convert the NumPy arrays to tensors
     tensor_dataset = torch.tensor(all_transformed_epochs, dtype=torch.float)
     labels_tensor = torch.tensor(all_labels, dtype=torch.long)
-    
-    # Combine the tensor dataset and labels tensor into a TensorDataset
-    dataset = TensorDataset(tensor_dataset, labels_tensor)
-    
+       
     # Get the current date and time
     current_datetime = datetime.now()
     
     # Format the date and time as a string for the dataset name
     dataset_name = current_datetime.strftime("%Y-%m-%d_%H-%M-%S")
     
-    # Save the combined dataset to the output folder with the specified name
-    output_file = os.path.join(output_folder_tensor_dataset, f"baseline_dataset_{dataset_name}.pt")
-    torch.save(dataset, output_file)
+    # Make a subfolder for the tensor dataset in the output folder, name it with the current date and time
+    subfolder = os.path.join(output_folder_tensor_dataset, dataset_name)    
+    
+    # Save the combined dataset to the subfolder with the specified name
+    os.makedirs(subfolder, exist_ok=True)
+    tensor_dataset_file_name = os.path.join(subfolder, f"dataset_{dataset_name}.pt")
+    torch.save(tensor_dataset, tensor_dataset_file_name)
+    
+    labels_tensor_file_name = os.path.join(subfolder, f"labels_{dataset_name}.pt")
+    torch.save(labels_tensor, labels_tensor_file_name)
     
     return None

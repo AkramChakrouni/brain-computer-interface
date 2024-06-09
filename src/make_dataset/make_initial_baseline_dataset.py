@@ -38,17 +38,12 @@ def suppress_output():
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 logger = logging.getLogger()
 
-def make_baseline_dataset():
+def make_baseline_dataset(input_folder, output_folder_filtered_files, output_folder_tensor_dataset):
     """
     Function to convert raw EEG data files to filtered files and then to a combined TensorDataset.
     """
     # Log the start of the process
-    logger.info("Loading...")
-    
-    # Input and output folders
-    input_folder = "data/external/raw"
-    output_folder_filtered_files = "data/external/processed"
-    output_folder_tensor_dataset = "data/base"
+    logger.info("Creating initial baseline dataset...")
     
     # Ensure output directories exist
     os.makedirs(output_folder_filtered_files, exist_ok=True)
@@ -61,4 +56,8 @@ def make_baseline_dataset():
         logger.error(f"An error occurred: {e}")
 
 if __name__ == "__main__":
-    make_baseline_dataset()
+    # Input and output folders
+    input_folder = "data/external/raw"
+    output_folder_filtered_files = "data/external/interim"
+    output_folder_tensor_dataset = "data/base"
+    make_baseline_dataset(input_folder, output_folder_filtered_files, output_folder_tensor_dataset)

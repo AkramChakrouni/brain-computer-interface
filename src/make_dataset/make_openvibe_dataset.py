@@ -35,27 +35,28 @@ def suppress_output():
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 logger = logging.getLogger()
 
-def make_openvibe_dataset():
+def make_openvibe_dataset(input_folder, output_folder_filtered_files, output_folder_tensor_dataset):
     """
     Function to convert raw EEG data files to filtered files and then to a combined TensorDataset.
     """
     # Log the start of the process
     logger.info("Loading...")
     
-    # Input and output folders
-    input_folder = "data/openvibe/raw"
-    output_folder_filtered_files = "data/openvibe/processed"
-    output_folder_tensor_dataset = "data/openvibe/interim"
-    
     # Ensure output directories exist
     os.makedirs(output_folder_filtered_files, exist_ok=True)
     os.makedirs(output_folder_tensor_dataset, exist_ok=True)
     
     try:
-        file_to_tensor(input_folder, output_folder_filtered_files, output_folder_tensor_dataset)
-        logger.info("Dataset creation successful.")
+        tensor, label = file_to_tensor(input_folder, output_folder_filtered_files, output_folder_tensor_dataset)
+        logger.info("Dataset update successful.")
     except Exception as e:
         logger.error(f"An error occurred: {e}")
+        
+    return tensor, label
 
 if __name__ == "__main__":
-    make_openvibe_dataset()
+    # Input and output folders
+    input_folder = "data/openvibe/raw"
+    output_folder_filtered_files = "data/openvibe/interim"
+    output_folder_tensor_dataset = "data/openvibe/processed"
+    make_openvibe_dataset(input_folder, output_folder_filtered_files, output_folder_tensor_dataset)
