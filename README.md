@@ -39,7 +39,7 @@ CNN model implementation for EEG MI
 │
 ├── setup.cfg          <- Configuration file for flake8
 │
-└── eeg_thesis_cnn                <- Source code for use in this project.
+└── src                <- Source code for use in this project.
     │
     ├── __init__.py    <- Makes eeg_thesis_cnn a Python module
     │

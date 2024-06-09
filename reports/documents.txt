@@ -1,0 +1,20 @@
+Usage Workflow
+1.  Run update_base_dataset.py: This will monitor the users folder for new user subfolders 
+    and update the base dataset when a new user is added.
+
+2.  Run processing_user_dataset.py: This will process new user datasets 
+    and train initial user-specific models.
+
+3.  Run update_user_model.py: This will prompt existing users to update 
+    their models if the base dataset has grown.
+
+This setup ensures that new user-specific models are trained on both the latest base dataset 
+and the user-specific dataset with higher weight, and existing users are prompted to update their models 
+when the base dataset grows. Adjust the placeholder model training code with your actual 
+model training code as needed.
+
+
+LINK:
+https://chatgpt.com/share/aabc5d9d-18a0-414c-8619-97667711cff9
+
+
