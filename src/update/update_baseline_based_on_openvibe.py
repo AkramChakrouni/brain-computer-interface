@@ -7,6 +7,7 @@ import time
 import datetime
 import torch
 import sys
+import logging
 
 # Add the parent directory of 'src' to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -18,6 +19,10 @@ RAW_DIR = 'data/openvibe/raw'
 PROCESSED_DIR = 'data/openvibe/processed'
 INTERIM_DIR = 'data/openvibe/interim'
 BASE_DIR = 'data/base'
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(message)s')
+logger = logging.getLogger()
 
 def get_latest_baseline():
     subfolders = [f.path for f in os.scandir(BASE_DIR) if f.is_dir()]
@@ -54,6 +59,9 @@ def update_baseline(new_data, new_labels):
 
 def monitor_directory():
     processed_files = set()
+    
+    # Log the start of the process
+    logger.info("Monitoring started...")
     
     while True:
         current_files = set(os.listdir(RAW_DIR))

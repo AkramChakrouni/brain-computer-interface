@@ -48,7 +48,7 @@ def make_openvibe_dataset(input_folder, output_folder_filtered_files, output_fol
     
     try:
         tensor, label = file_to_tensor(input_folder, output_folder_filtered_files, output_folder_tensor_dataset)
-        logger.info("Dataset update successful.")
+        logger.info("Dataset updated successfully.")
     except Exception as e:
         logger.error(f"An error occurred: {e}")
         

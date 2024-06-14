@@ -8,7 +8,6 @@ import numpy as np
 from datetime import datetime
 import mne
 import torch
-from torch.utils.data import TensorDataset
 import sys
 import logging
 
