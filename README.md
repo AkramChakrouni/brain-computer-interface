@@ -1,10 +1,20 @@
-# eeg_thesis_cnn
+# Brain-Computer Interface (BCI) Model
 
-<a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
-    <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
-</a>
+### Overview
 
-CNN model implementation for EEG MI
+This repository contains the implementation of a Brain-Computer Interface (BCI) model using EEG (Electroencephalography) data. The objective of this project is to explore the feasibility of using neural signals to control devices or interact with virtual environments in real-time. This BCI model leverages signal processing, feature extraction, machine learning models, and real-time interaction to enable brain-computer communication.
+
+#### The project encompasses several components, including:
+
+EEG Data Preprocessing: Cleaning and transforming raw EEG data into a usable format.
+
+Feature Extraction: Extracting relevant features from EEG signals.
+
+Model Training: Using machine learning techniques to build a model capable of interpreting EEG signals.
+
+Evaluation: Assessing the model's performance using standard metrics.
+
+Visualization: Generating visualizations for data exploration and result interpretation.
 
 ## Project Organization
 
